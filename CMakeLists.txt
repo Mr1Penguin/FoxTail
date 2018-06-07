@@ -7,4 +7,6 @@ project ("FoxTail")
 
 # Include sub-projects.
 add_subdirectory ("FoxTail")
-add_subdirectory ("FoxTailTests")
+if(ENABLE_TESTS)
+	add_subdirectory ("FoxTailTests")
+endif(ENABLE_TESTS)
