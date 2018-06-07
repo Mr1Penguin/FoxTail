@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "Container.h"
+#include "Container.hpp"
+#include <foxtail_export.h>
 
-__declspec(dllexport) void abc() {
+FOXTAIL_EXPORT void abc() {
 
 }

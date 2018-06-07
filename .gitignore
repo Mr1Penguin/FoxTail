@@ -261,3 +261,6 @@ __pycache__/
 *.pyc
 
 Generated Files/
+
+# env based config
+CMakeSettings.json
