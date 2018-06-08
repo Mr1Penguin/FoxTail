@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Services/UseServices.hpp"
-#include "Services/ServiceInterface.hpp"
+#include "Services/UseServices.h"
+#include "Services/ServiceInterface.h"
 
 #include <memory>
 #include <vector>
@@ -15,8 +15,8 @@ namespace FoxTail {
 		void Register(std::shared_ptr<TC> service) {
 			static_assert(std::is_base_of_v<TI, TC>);
 			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);
-			auto it = std::find_if(services.begin(), services.end(),
-				[](std::shared_ptr<Services::ServiceInterface> s) {
+			auto it = std::find_if(services.begin(), services.end(), 
+				[](std::shared_ptr<Services::ServiceInterface> s) { 
 				return dynamic_cast<TI*>(s.get()) != nullptr;
 			});
 

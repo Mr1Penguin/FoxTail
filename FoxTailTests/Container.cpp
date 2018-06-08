@@ -1,9 +1,8 @@
-#define BOOST_TEST_MODULE FoxTail
-#include <boost/test/unit_test.hpp>
+#include "stdafx.h"
 
-#include "FoxTail.hpp"
+#include "../FoxTail/FoxTail.h"
 
-//BOOST_AUTO_TEST_SUITE(test_suite1)
+BOOST_AUTO_TEST_SUITE(test_suite1)
 
 struct TestServiceInterface : FoxTail::Services::ServiceInterface {};
 
@@ -34,7 +33,7 @@ struct ServiceWithDependence : ServiceWithDependenceInterface, FoxTail::Services
 	auto TestService() { return this->service<TestServiceInterface>(); }
 };
 
-//BOOST_AUTO_TEST_SUITE(test_suite2)
+BOOST_AUTO_TEST_SUITE(test_suite2)
 
 BOOST_AUTO_TEST_CASE(containerShouldRegisterServiceWithDependences)
 {
@@ -48,5 +47,5 @@ BOOST_AUTO_TEST_CASE(containerShouldRegisterServiceWithDependences)
 	BOOST_TEST(ts->TestService() != nullptr);
 }
 
-//BOOST_AUTO_TEST_SUITE_END()
-//BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
