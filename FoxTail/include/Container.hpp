@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Services/UseServices.h"
-#include "Services/ServiceInterface.h"
+#include "Services/UseServices.hpp"
+#include "Services/ServiceInterface.hpp"
 
 #include <memory>
 #include <vector>

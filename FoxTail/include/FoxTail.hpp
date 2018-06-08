@@ -6,6 +6,6 @@
 #define FOXEXPORT __declspec(dllimport)
 #endif
 
-#include "Container.h"
-#include "Services/UseServices.h"
-#include "Services/ServiceInterface.h"
+#include "Container.hpp"
+#include "Services/UseServices.hpp"
+#include "Services/ServiceInterface.hpp"

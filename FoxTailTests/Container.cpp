@@ -1,8 +1,6 @@
 #include "stdafx.h"
 
-#include "../FoxTail/FoxTail.h"
-
-BOOST_AUTO_TEST_SUITE(test_suite1)
+#include "FoxTail.hpp"
 
 struct TestServiceInterface : FoxTail::Services::ServiceInterface {};
 
@@ -33,8 +31,6 @@ struct ServiceWithDependence : ServiceWithDependenceInterface, FoxTail::Services
 	auto TestService() { return this->service<TestServiceInterface>(); }
 };
 
-BOOST_AUTO_TEST_SUITE(test_suite2)
-
 BOOST_AUTO_TEST_CASE(containerShouldRegisterServiceWithDependences)
 {
 	using namespace FoxTail;
@@ -46,6 +42,3 @@ BOOST_AUTO_TEST_CASE(containerShouldRegisterServiceWithDependences)
 	BOOST_TEST(ts != nullptr);
 	BOOST_TEST(ts->TestService() != nullptr);
 }
-
-BOOST_AUTO_TEST_SUITE_END()
-BOOST_AUTO_TEST_SUITE_END()
