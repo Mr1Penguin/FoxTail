@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#define BOOST_TEST_MODULE FoxTail
+#include <boost/test/unit_test.hpp>
 #include "FoxTail.hpp"
 
 struct TestServiceInterface : FoxTail::Services::ServiceInterface {};

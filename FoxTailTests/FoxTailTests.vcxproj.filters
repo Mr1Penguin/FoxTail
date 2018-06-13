@@ -29,5 +29,8 @@
     <ClCompile Include="Container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

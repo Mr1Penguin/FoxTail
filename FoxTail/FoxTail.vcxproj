@@ -232,7 +232,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\Container.cpp" />
+    <ClCompile Include="src\Events\EventToken.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -243,7 +245,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\App.hpp" />
     <ClInclude Include="include\Container.hpp" />
+    <ClInclude Include="include\Events\Event.hpp" />
+    <ClInclude Include="include\Events\EventBus.hpp" />
+    <ClInclude Include="include\Events\EventToken.hpp" />
+    <ClInclude Include="include\export.h" />
     <ClInclude Include="include\FoxTail.hpp" />
     <ClInclude Include="include\Services\ServiceInterface.hpp" />
     <ClInclude Include="include\Services\UseServices.hpp" />
