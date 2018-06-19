@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "App.hpp"
 
 FoxTail::App::App() {

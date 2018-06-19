@@ -11,32 +11,31 @@ namespace FoxTail::Events {
 		struct Event {
 
 		};
-	}
 
-	template<class TDelegate>
-	class BaseEvent : public detail::Event {
-	protected:
-		EventToken AddHandler(TDelegate & handler) {
-			static std::mt19937_64 rng{ std::random_device{}() };
-			EventToken token;
-			do {
-				token.value = rng();
-			} while (handlers.find(token) != handlers.end());
+		template<class TDelegate>
+		class EventBase : public Event {
+		protected:
+			EventToken AddHandler(TDelegate & handler) {
+				static std::mt19937_64 rng{ std::random_device{}() };
+				EventToken token;
+				do {
+					token.value = rng();
+				} while (handlers.find(token) != handlers.end());
+				handlers.insert({ token, handler });
+				return token;
+			}
 
-			handlers.insert({ token, handler });
-			return token;
-		}
+			void RemoveHandler(EventToken token) {
+				handlers.erase(token);
+			}
 
-		void RemoveHandler(EventToken token) {
-			handlers.erase(token);
-		}
-
-		std::unordered_map<EventToken, TDelegate, EventTokenHash> handlers;
-	};
+			std::unordered_map<EventToken, TDelegate, EventTokenHash> handlers;
+		};
+	}	
 
 	template<class TPayload>
-	class Event : public BaseEvent<delegate<void(const TPayload &)>> {
-		typedef BaseEvent<delegate<void(const TPayload &)>> base;
+	class Event : public detail::EventBase<delegate<void(const TPayload &)>> {
+		typedef detail::EventBase<delegate<void(const TPayload &)>> base;
 	public:
 		EventToken operator()(delegate<void(const TPayload &)> handler) {
 			return base::AddHandler(handler);
@@ -55,11 +54,11 @@ namespace FoxTail::Events {
 	};
 
 	template<>
-	class Event<void> : public BaseEvent<delegate<void()>> {
-		typedef BaseEvent<delegate<void()>> base;
+	class Event<void> : public detail::EventBase<delegate<void()>> {
+		typedef detail::EventBase<delegate<void()>> base;
 	public:
 		EventToken operator()(delegate<void()> handler) {
-			return AddHandler(handler);
+			return base::AddHandler(handler);
 		}
 
 		void operator()(EventToken token) {

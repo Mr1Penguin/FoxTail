@@ -32,28 +32,20 @@ BOOST_AUTO_TEST_CASE(handlerShouldBeRemoved)
 
 BOOST_AUTO_TEST_CASE(handlerCanBeAddedMoreThanOnce)
 {
-	bool done = false;
 	FoxTail::Events::EventToken t1, t2;
-	boost::thread t([&t1, &t2, &done]() {
+	boost::thread t([&t1, &t2]() {
 		FoxTail::Events::EventBus eb;
 		auto e = eb.GetEvent<FoxTail::Events::Event<int>>();
 		auto handler = [](const int & arg) { };
 		t1 = e(handler);
 		t2 = e(handler);
-		done = true;
 	});
-	using namespace std::chrono_literals;
-	int i = 0;
-	while (i < 100 && !done) {
-		std::this_thread::sleep_for(10ms);
-		i++;
-	}
-	if (!done) {
-		TerminateThread(t.native_handle(), 0);
-		BOOST_FAIL("timeout error");
+	if (t.try_join_for(boost::chrono::seconds(1))) {
+		BOOST_TEST(!(t1 == t2));
 	}
 	else {
-		BOOST_TEST(!(t1 == t2));
+		TerminateThread(t.native_handle(), 0);
+		BOOST_FAIL("timeout error");
 	}
 }
 

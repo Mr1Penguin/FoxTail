@@ -1,75 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Resources">
+      <UniqueIdentifier>accd3aa8-1ba0-4223-9bbe-0c431709210b</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="include">
+      <UniqueIdentifier>{6c9dedf8-ec39-4063-870c-b0a436523378}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Services">
-      <UniqueIdentifier>{1c71a1af-5689-480d-92e2-401370e60287}</UniqueIdentifier>
+    <Filter Include="include\Events">
+      <UniqueIdentifier>{fa88aee4-74a4-4551-856a-574cf33edd35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Events">
-      <UniqueIdentifier>{6236064c-bab0-4485-b963-9e717ee12474}</UniqueIdentifier>
+    <Filter Include="include\Services">
+      <UniqueIdentifier>{dc2a0563-06fc-4c90-80dc-c08a79481d8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Events">
-      <UniqueIdentifier>{c1ec26ed-c1e5-4c22-9fea-fd26c5638353}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{4636fd81-628b-44da-a319-779dbe0a65ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Events">
+      <UniqueIdentifier>{e6039f32-5727-4583-9395-92c663532f50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Container.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="Generated Files\module.g.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\App.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Container.cpp">
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Events\EventToken.cpp">
-      <Filter>Source Files\Events</Filter>
+      <Filter>src\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\ServiceInterface.hpp">
-      <Filter>Header Files\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\UseServices.hpp">
-      <Filter>Header Files\Services</Filter>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Class.h" />
+    <ClInclude Include="include\App.hpp">
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Container.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\FoxTail.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\App.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\EventBus.hpp">
-      <Filter>Header Files\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\Event.hpp">
-      <Filter>Header Files\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\EventToken.hpp">
-      <Filter>Header Files\Events</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\export.h">
-      <Filter>Header Files</Filter>
+      <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\FoxTail.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ViewModelBase.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ViewModelFactory.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\Event.hpp">
+      <Filter>include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\EventBus.hpp">
+      <Filter>include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\EventToken.hpp">
+      <Filter>include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\ServiceInterface.hpp">
+      <Filter>include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\UseServices.hpp">
+      <Filter>include\Services</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FoxTail.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Stub.idl" />
   </ItemGroup>
 </Project>

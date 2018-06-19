@@ -12,7 +12,7 @@ namespace FoxTail {
 	class Container {
 	public:
 		template<class TI, class TC>
-		void Register(std::shared_ptr<TC> service) {
+		void RegisterService(std::shared_ptr<TC> service) {
 			static_assert(std::is_base_of_v<TI, TC>);
 			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);
 			auto it = std::find_if(services.begin(), services.end(), 
@@ -31,19 +31,27 @@ namespace FoxTail {
 		}
 
 		template <class TI>
-		std::shared_ptr<TI> Resolve() {
+		std::shared_ptr<TI> ResolveService() {
+			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);
 			auto it = std::find_if(services.begin(), services.end(),
 				[](std::shared_ptr<Services::ServiceInterface> s) {
 				return dynamic_cast<TI*>(s.get()) != nullptr;
 			});
 
 			if (it == services.end())
-				throw std::runtime_error("Service not found");
+				throw std::runtime_error("Service not found"); //maybe return nullptr
 
 			return std::dynamic_pointer_cast<TI>(*it);
 		}
+
+		template <class TA>
+		void GetViewModel() {
+
+		}
+
 	private:
 		std::vector<std::shared_ptr<Services::ServiceInterface>> services;
+		
 
 		template <class... T>
 		void InitService(FoxTail::Services::use_services<T...> * s) {
@@ -54,7 +62,7 @@ namespace FoxTail {
 
 		template <class S, class T>
 		void SetService(T * s) {
-			s->SetService(Resolve<S>());
+			s->SetService(ResolveService<S>());
 		}
 	};
 }

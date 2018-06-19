@@ -1,0 +1,9 @@
+namespace FoxTail
+{
+    [default_interface]
+    runtimeclass Stub 
+    {
+        Stub();
+        Int32 MyProperty;
+    }
+}

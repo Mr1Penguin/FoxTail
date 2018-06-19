@@ -1,46 +1,49 @@
-#include "stdafx.h"
-
-#define BOOST_TEST_MODULE FoxTail
-#include <boost/test/unit_test.hpp>
+#include "pch.h"
+#include "CppUnitTest.h"
 #include "FoxTail.hpp"
 
-struct TestServiceInterface : FoxTail::Services::ServiceInterface {};
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+namespace ft = FoxTail;
+namespace fs = FoxTail::Services;
+
+struct TestServiceInterface : fs::ServiceInterface {};
 
 struct TestService : TestServiceInterface {};
 
-BOOST_AUTO_TEST_CASE(containerShouldRegisterAndResolveService)
-{
-	using namespace FoxTail;
-	using namespace FoxTail::Services;
-	Container c;
-	c.Register<TestServiceInterface>(std::make_shared<TestService>());
-	auto ts = c.Resolve<TestServiceInterface>();
-	BOOST_TEST(ts != nullptr);
-}
-
-BOOST_AUTO_TEST_CASE(containerShouldThrowExceptionOnResolvingNonExistingService)
-{
-	using namespace FoxTail;
-	using namespace FoxTail::Services;
-	Container c;
-	BOOST_CHECK_THROW(c.Resolve<TestServiceInterface>(), std::runtime_error);
-}
-
 struct ServiceWithDependenceInterface : FoxTail::Services::ServiceInterface {};
 
-struct ServiceWithDependence : ServiceWithDependenceInterface, FoxTail::Services::use_services<TestServiceInterface>
+struct ServiceWithDependence : ServiceWithDependenceInterface, fs::use_services<TestServiceInterface>
 {
 	auto TestService() { return this->service<TestServiceInterface>(); }
 };
 
-BOOST_AUTO_TEST_CASE(containerShouldRegisterServiceWithDependences)
+namespace FoxTailTests
 {
-	using namespace FoxTail;
-	using namespace FoxTail::Services;
-	Container c;
-	c.Register<TestServiceInterface>(std::make_shared<TestService>());
-	c.Register<ServiceWithDependenceInterface>(std::make_shared<ServiceWithDependence>());
-	auto ts = std::dynamic_pointer_cast<ServiceWithDependence>(c.Resolve<ServiceWithDependenceInterface>());
-	BOOST_TEST(ts != nullptr);
-	BOOST_TEST(ts->TestService() != nullptr);
+    TEST_CLASS(Container)
+    {
+    public:
+        TEST_METHOD(ShouldRegisterAndResolveService)
+        {
+			ft::Container c;
+			c.RegisterService<TestServiceInterface>(std::make_shared<TestService>());
+			auto ts = c.ResolveService<TestServiceInterface>();
+			Assert::IsNotNull(ts.get());
+        }
+
+		TEST_METHOD(ShouldThrowExceptionOnResolvingNonExistingService)
+		{
+			ft::Container c;
+			Assert::ExpectException<std::runtime_error>([&c] { c.ResolveService<TestServiceInterface>(); });
+		}
+
+		TEST_METHOD(ShouldRegisterServiceWithDependences)
+		{
+			ft::Container c;
+			c.RegisterService<TestServiceInterface>(std::make_shared<TestService>());
+			c.RegisterService<ServiceWithDependenceInterface>(std::make_shared<ServiceWithDependence>());
+			auto ts = std::dynamic_pointer_cast<ServiceWithDependence>(c.ResolveService<ServiceWithDependenceInterface>());
+			Assert::IsNotNull(ts.get());
+			Assert::IsNotNull(ts->TestService().get());
+		}
+    };
 }
