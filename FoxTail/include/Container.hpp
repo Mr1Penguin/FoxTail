@@ -51,7 +51,6 @@ namespace FoxTail {
 
 	private:
 		std::vector<std::shared_ptr<Services::ServiceInterface>> services;
-		
 
 		template <class... T>
 		void InitService(FoxTail::Services::use_services<T...> * s) {

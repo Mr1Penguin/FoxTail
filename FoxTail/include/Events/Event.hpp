@@ -8,12 +8,15 @@
 
 namespace FoxTail::Events {
 	namespace detail {
-		struct Event {
-
+		class Event {
+		public:
+			virtual ~Event() {}
 		};
 
 		template<class TDelegate>
 		class EventBase : public Event {
+		public:
+			virtual ~EventBase<TDelegate>() {}
 		protected:
 			EventToken AddHandler(TDelegate & handler) {
 				static std::mt19937_64 rng{ std::random_device{}() };
@@ -51,6 +54,8 @@ namespace FoxTail::Events {
 				p.second(payload);
 			});
 		}
+
+		~Event<TPayload>() {}
 	};
 
 	template<>
@@ -71,5 +76,7 @@ namespace FoxTail::Events {
 				p.second();
 			});
 		}	
+
+		~Event<void>() {}
 	};
 }	
