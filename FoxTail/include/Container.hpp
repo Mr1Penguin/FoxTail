@@ -44,11 +44,6 @@ namespace FoxTail {
 			return std::dynamic_pointer_cast<TI>(*it);
 		}
 
-		template <class TA>
-		void GetViewModel() {
-
-		}
-
 	private:
 		std::vector<std::shared_ptr<Services::ServiceInterface>> services;
 

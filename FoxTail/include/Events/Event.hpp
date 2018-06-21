@@ -16,6 +16,9 @@ namespace FoxTail::Events {
 		template<class TDelegate>
 		class EventBase : public Event {
 		public:
+			EventBase<TDelegate>() = default;
+			EventBase<TDelegate>(EventBase<TDelegate> const &) = delete;
+			void operator=(EventBase<TDelegate> const &) = delete;
 			virtual ~EventBase<TDelegate>() {}
 		protected:
 			EventToken AddHandler(TDelegate & handler) {
