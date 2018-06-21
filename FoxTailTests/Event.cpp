@@ -7,6 +7,8 @@ namespace ft = FoxTail;
 namespace fs = FoxTail::Services;
 namespace fe = FoxTail::Events;
 
+struct TestEvent : fe::Event<int> {};
+
 namespace FoxTailTests
 {
 	TEST_CLASS(Event)
@@ -16,7 +18,7 @@ namespace FoxTailTests
 		{
 			int val{ 0 };
 			fe::EventBus eb;
-			auto & e = eb.GetEvent<fe::Event<int>>();
+			auto & e = eb.GetEvent<TestEvent>();
 			auto handler = [&val](const int & arg) { val = arg; };
 			auto token = e(handler);
 			e(42);
@@ -27,7 +29,7 @@ namespace FoxTailTests
 		{
 			int val{ 0 };
 			fe::EventBus eb;
-			auto & e = eb.GetEvent<fe::Event<int>>();
+			auto & e = eb.GetEvent<TestEvent>();
 			auto handler = [&val](const int & arg) { val = arg; };
 			auto token = e(handler);
 			e(token);
@@ -39,7 +41,7 @@ namespace FoxTailTests
 		{
 			fe::EventToken t1, t2;
 			fe::EventBus eb;
-			auto & e = eb.GetEvent<FoxTail::Events::Event<int>>();
+			auto & e = eb.GetEvent<TestEvent>();
 			auto handler = [](const int & arg) {};
 			t1 = e(handler);
 			t2 = e(handler);
@@ -50,7 +52,7 @@ namespace FoxTailTests
 		{
 			int val{ 0 };
 			fe::EventBus eb;
-			auto & e = eb.GetEvent<fe::Event<int>>();
+			auto & e = eb.GetEvent<TestEvent>();
 			auto handler = [&val](const int & arg) { val += arg; };
 			e(handler);
 			e(handler);
@@ -61,8 +63,8 @@ namespace FoxTailTests
 		TEST_METHOD(ShouldGiveSameEvent) 
 		{
 			fe::EventBus eb;
-			auto & e1 = eb.GetEvent<fe::Event<int>>();
-			auto & e2 = eb.GetEvent<fe::Event<int>>();
+			auto & e1 = eb.GetEvent<TestEvent>();
+			auto & e2 = eb.GetEvent<TestEvent>();
 			Assert::IsTrue(&e1 == &e2);
 		}
 	};

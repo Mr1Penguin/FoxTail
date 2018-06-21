@@ -37,7 +37,7 @@ namespace FoxTail::Events {
 
 			std::unordered_map<EventToken, TDelegate, EventTokenHash> handlers;
 		};
-	}	
+	}
 
 	template<class TPayload>
 	class Event : public detail::EventBase<delegate<void(const TPayload &)>> {
@@ -78,8 +78,8 @@ namespace FoxTail::Events {
 				[](auto p) {
 				p.second();
 			});
-		}	
+		}
 
 		~Event<void>() {}
 	};
-}	
+}
