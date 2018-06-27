@@ -1,12 +1,14 @@
 #pragma once
 
-#include "Services/UseServices.hpp"
-#include "Services/ServiceInterface.hpp"
-
 #include <memory>
 #include <vector>
 #include <type_traits>
 #include <algorithm>
+#include <nanorange.hpp>
+
+#include "Services/ServiceInterface.hpp"
+#include "Services/UseServices.hpp"
+#include "VectorHelpers.hpp"
 
 namespace FoxTail {
 	class Container {
@@ -15,48 +17,28 @@ namespace FoxTail {
 		void RegisterService(std::shared_ptr<TC> service) {
 			static_assert(std::is_base_of_v<TI, TC>);
 			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);
-			auto it = std::find_if(services.begin(), services.end(), 
-				[](std::shared_ptr<Services::ServiceInterface> s) { 
-				return dynamic_cast<TI*>(s.get()) != nullptr;
-			});
+			replace_or_push_back(m_services,
+				[](std::shared_ptr<Services::ServiceInterface> & s) { return dynamic_cast<TI*>(s.get()) != nullptr; },
+				[&service](){return service;});
 
-			if (it == services.end()) {
-				services.push_back(service);
-			}
-			else {
-				*it = service;
-			}
-
-			InitService(service.get());
+			FillDependencies(service.get());
 		}
 
 		template <class TI>
-		std::shared_ptr<TI> ResolveService() {
+		std::shared_ptr<TI> ResolveService() const {
 			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);
-			auto it = std::find_if(services.begin(), services.end(),
+			auto it = nano::find_if(m_services,
 				[](std::shared_ptr<Services::ServiceInterface> s) {
 				return dynamic_cast<TI*>(s.get()) != nullptr;
 			});
 
-			if (it == services.end())
-				throw std::runtime_error("Service not found"); //maybe return nullptr
+			if (it == nano::end(m_services))
+				throw std::runtime_error("Service not found"); //maybe return nullptr or replace with custom exception
 
 			return std::dynamic_pointer_cast<TI>(*it);
 		}
 
 	private:
-		std::vector<std::shared_ptr<Services::ServiceInterface>> services;
-
-		template <class... T>
-		void InitService(FoxTail::Services::use_services<T...> * s) {
-			SetService<T...>(s);
-		}
-
-		void InitService(...) {}
-
-		template <class S, class T>
-		void SetService(T * s) {
-			s->SetService(ResolveService<S>());
-		}
+		std::vector<std::shared_ptr<Services::ServiceInterface>> m_services;
 	};
 }

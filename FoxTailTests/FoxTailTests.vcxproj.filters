@@ -17,6 +17,8 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="VectorHelpers.cpp" />
+    <ClCompile Include="ViewModelFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

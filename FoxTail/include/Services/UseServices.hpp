@@ -2,6 +2,13 @@
 
 #include <memory>
 
+#include "Container.hpp"
+
+namespace FoxTail {
+	class App;
+	//class Container;
+}
+
 namespace FoxTail::Services {
 	template <class Service>
 	struct ServiceUser {
@@ -26,4 +33,19 @@ namespace FoxTail::Services {
 			return ServiceUser<TService>::service;
 		}
 	};
+
+	namespace detail {
+		template <class S, class T>
+		void SetService(ServiceUser<T> * s) {
+			s->SetService(App::Current()->Container().ResolveService<S>());
+		}
+	}
+
+	template <class... T>
+	void FillDependencies(FoxTail::Services::use_services<T...> * s) {
+		detail::SetService<T...>(s);
+	}
+
+	template <class... T>
+	void FillDependencies(...) {}
 }

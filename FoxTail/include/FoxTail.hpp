@@ -8,3 +8,5 @@
 #include "Events/EventToken.hpp"
 #include "App.hpp"
 #include "ViewModelBase.hpp"
+#include "VectorHelpers.hpp"
+#include "ViewModelFactory.hpp"

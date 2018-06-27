@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "App.hpp"
 
-FoxTail::App::App() {
-	current = this;
+FOXEXPORT FoxTail::App::App() {
+
+	m_current = this;
 	BeforeInit();
 	Init();
 	AfterInit();

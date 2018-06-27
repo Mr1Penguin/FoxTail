@@ -24,24 +24,24 @@ namespace FoxTailTests
     public:
         TEST_METHOD(ShouldRegisterAndResolveService)
         {
-			ft::Container c;
-			c.RegisterService<TestServiceInterface>(std::make_shared<TestService>());
-			auto ts = c.ResolveService<TestServiceInterface>();
+			ft::App app;
+			app.Container().RegisterService<TestServiceInterface>(std::make_shared<TestService>());
+			auto ts = app.Container().ResolveService<TestServiceInterface>();
 			Assert::IsNotNull(ts.get());
         }
 
 		TEST_METHOD(ShouldThrowExceptionOnResolvingNonExistingService)
 		{
-			ft::Container c;
-			Assert::ExpectException<std::runtime_error>([&c] { c.ResolveService<TestServiceInterface>(); });
+			ft::App app;
+			Assert::ExpectException<std::runtime_error>([&app] { app.Container().ResolveService<TestServiceInterface>(); });
 		}
 
 		TEST_METHOD(ShouldRegisterServiceWithDependences)
 		{
-			ft::Container c;
-			c.RegisterService<TestServiceInterface>(std::make_shared<TestService>());
-			c.RegisterService<ServiceWithDependenceInterface>(std::make_shared<ServiceWithDependence>());
-			auto ts = std::dynamic_pointer_cast<ServiceWithDependence>(c.ResolveService<ServiceWithDependenceInterface>());
+			ft::App app;
+			app.Container().RegisterService<TestServiceInterface>(std::make_shared<TestService>());
+			app.Container().RegisterService<ServiceWithDependenceInterface>(std::make_shared<ServiceWithDependence>());
+			auto ts = std::dynamic_pointer_cast<ServiceWithDependence>(app.Container().ResolveService<ServiceWithDependenceInterface>());
 			Assert::IsNotNull(ts.get());
 			Assert::IsNotNull(ts->TestService().get());
 		}

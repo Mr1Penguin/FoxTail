@@ -5,17 +5,18 @@
 namespace FoxTail {
 	class App {
 	public:
-		App();
-		const FoxTail::Container & Container() { return container; }
-		const FoxTail::Events::EventBus & EventBus() { return event_bus; }
+		FOXEXPORT App();
+		FoxTail::Container & Container() { return m_container; }
+		FoxTail::Events::EventBus & EventBus() { return m_event_bus; }
+		static FoxTail::App * Current() { return m_current; }
 	protected:
-		FoxTail::Container container;
-		FoxTail::Events::EventBus event_bus;
+		FoxTail::Container m_container;
+		FoxTail::Events::EventBus m_event_bus;
 
 		virtual void BeforeInit() {}
 		virtual void AfterInit() {}
 		virtual void Init();
 	private:
-		inline static App * current;
+		FOXEXPORT inline static App * m_current = nullptr;
 	};
 }

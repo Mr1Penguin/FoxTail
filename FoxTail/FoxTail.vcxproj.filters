@@ -26,7 +26,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Generated Files\module.g.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -39,10 +38,10 @@
     <ClCompile Include="src\Events\EventToken.cpp">
       <Filter>src\Events</Filter>
     </ClCompile>
+    <ClCompile Include="Stub.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Class.h" />
     <ClInclude Include="include\App.hpp">
       <Filter>include</Filter>
     </ClInclude>
@@ -75,6 +74,10 @@
     </ClInclude>
     <ClInclude Include="include\Services\UseServices.hpp">
       <Filter>include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Stub.h" />
+    <ClInclude Include="include\VectorHelpers.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
