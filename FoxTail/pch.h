@@ -18,3 +18,7 @@
 #include <vector>
 #include <cstdint>
 #include <functional>
+
+
+
+#define PERMISSIVEFIX //remove if code compile ok with /permissive-
