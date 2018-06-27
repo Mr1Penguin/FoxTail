@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <vector>
 #include "CppUnitTest.h"
-#include "FoxTail.hpp"
+#include "FoxTail.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace ft = FoxTail;
@@ -26,7 +26,7 @@ namespace FoxTailTests
 	TEST_CLASS(ViewModelFactory)
 	{
 	public:
-		TEST_METHOD(ShouldReturnPageViewModel)
+		/*TEST_METHOD(ShouldReturnPageViewModel)
 		{
 			auto vm = ft::ViewModelFactory::Instance().GetViewModel<ViewModel>();
 			Assert::IsNotNull(vm.get());
@@ -65,6 +65,6 @@ namespace FoxTailTests
 			Assert::IsNotNull(vm.get());
 			Assert::IsNotNull(vm->GetTestService().get());
 			Assert::IsNotNull(dynamic_cast<VMFTestService*>(vm->GetTestService().get()));
-		}
+		}*/
 	};
 }

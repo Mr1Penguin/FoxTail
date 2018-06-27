@@ -10,4 +10,4 @@
 #include <ppltasks.h>
 
 #include "UnitTestApp.xaml.h"
-#include "FoxTail.hpp"
+#include "FoxTail.h"

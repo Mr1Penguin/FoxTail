@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "App.hpp"
+#include "App.h"
 
 FOXEXPORT FoxTail::App::App() {
 

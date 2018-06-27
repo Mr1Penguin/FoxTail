@@ -4,7 +4,7 @@
 #include <delegate.hpp>
 #include <random>
 #include <algorithm>
-#include "EventToken.hpp"
+#include "EventToken.h"
 
 namespace FoxTail::Events {
 	namespace detail {

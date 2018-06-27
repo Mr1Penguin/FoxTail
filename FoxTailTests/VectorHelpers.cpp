@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <vector>
 #include "CppUnitTest.h"
-#include "FoxTail.hpp"
+#include "FoxTail.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace ft = FoxTail;

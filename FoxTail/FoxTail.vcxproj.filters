@@ -39,45 +39,51 @@
       <Filter>src\Events</Filter>
     </ClCompile>
     <ClCompile Include="Stub.cpp" />
+    <ClCompile Include="src\ViewModelBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="include\App.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Container.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\export.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\FoxTail.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ViewModelBase.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ViewModelFactory.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\Event.hpp">
-      <Filter>include\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\EventBus.hpp">
-      <Filter>include\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Events\EventToken.hpp">
-      <Filter>include\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\ServiceInterface.hpp">
-      <Filter>include\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Services\UseServices.hpp">
-      <Filter>include\Services</Filter>
-    </ClInclude>
     <ClInclude Include="Stub.h" />
-    <ClInclude Include="include\VectorHelpers.hpp">
+    <ClInclude Include="include\ViewModelBase.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ViewModelFactory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VectorHelpers.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PageBase.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FoxTail.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Container.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\App.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\UseServices.h">
+      <Filter>include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Services\ServiceInterface.h">
+      <Filter>include\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\EventBus.h">
+      <Filter>include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\Event.h">
+      <Filter>include\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\EventToken.h">
+      <Filter>include\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,5 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Stub.idl" />
+    <Midl Include="src\ViewModelBase.idl">
+      <Filter>src</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

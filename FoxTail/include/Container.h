@@ -6,9 +6,9 @@
 #include <algorithm>
 #include <nanorange.hpp>
 
-#include "Services/ServiceInterface.hpp"
-#include "Services/UseServices.hpp"
-#include "VectorHelpers.hpp"
+#include "Services/ServiceInterface.h"
+#include "Services/UseServices.h"
+#include "VectorHelpers.h"
 
 namespace FoxTail {
 	class Container {

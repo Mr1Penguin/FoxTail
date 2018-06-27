@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <nanorange.hpp>
-#include "Event.hpp"
+#include "Event.h"
 
 namespace FoxTail::Events {
 

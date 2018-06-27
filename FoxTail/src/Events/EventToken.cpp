@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Events/EventToken.hpp"
+#include "Events/EventToken.h"
 
 namespace FoxTail::Events {
 	FOXEXPORT bool operator==(const EventToken & left, const EventToken & right) {

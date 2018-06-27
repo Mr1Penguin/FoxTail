@@ -1,6 +1,6 @@
 #pragma once
-#include "Container.hpp"
-#include "Events/EventBus.hpp"
+#include "Container.h"
+#include "Events/EventBus.h"
 
 namespace FoxTail {
 	class App {

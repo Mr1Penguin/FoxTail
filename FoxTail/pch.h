@@ -8,6 +8,7 @@
 #define NOMINMAX
 
 #include "winrt/Windows.Foundation.h"
+#include "winrt/Windows.UI.Xaml.Data.h"
 
 #include <nanorange.hpp>
 #include <unordered_map>

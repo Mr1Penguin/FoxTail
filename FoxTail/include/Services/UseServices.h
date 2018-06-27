@@ -2,11 +2,10 @@
 
 #include <memory>
 
-#include "Container.hpp"
+#include "Container.h"
 
 namespace FoxTail {
 	class App;
-	//class Container;
 }
 
 namespace FoxTail::Services {
