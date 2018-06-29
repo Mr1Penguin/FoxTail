@@ -42,6 +42,9 @@
     <ClCompile Include="src\ViewModelBase.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Frame.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -85,6 +88,9 @@
     <ClInclude Include="include\Events\EventToken.h">
       <Filter>include\Events</Filter>
     </ClInclude>
+    <ClInclude Include="include\Frame.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="FoxTail.def" />
@@ -93,8 +99,10 @@
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Stub.idl" />
     <Midl Include="src\ViewModelBase.idl">
+      <Filter>src</Filter>
+    </Midl>
+    <Midl Include="src\Frame.idl">
       <Filter>src</Filter>
     </Midl>
   </ItemGroup>

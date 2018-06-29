@@ -2,10 +2,18 @@
 
 namespace FoxTail {
 	template <class TViewModel>
-	class BasePage {
+	class PageBase {
 	public:
-		virtual ~BasePage() {}
-	protected:
+		PageBase() {
+			m_view_model = ViewModelFactory.Instance().GetViewModel<TViewModel>();
+		}
 
+		TViewModel & ViewModel() {
+			return *m_view_model;
+		}
+
+		virtual ~PageBase() {}
+	protected:
+		std::shared_ptr<TViewModel> m_view_model;
 	};
 }

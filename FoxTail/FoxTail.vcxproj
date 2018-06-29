@@ -109,6 +109,7 @@
     <ClInclude Include="include\Events\EventToken.h" />
     <ClInclude Include="include\export.h" />
     <ClInclude Include="include\FoxTail.h" />
+    <ClInclude Include="include\Frame.h" />
     <ClInclude Include="include\PageBase.h" />
     <ClInclude Include="include\Services\ServiceInterface.h" />
     <ClInclude Include="include\Services\UseServices.h" />
@@ -116,10 +117,6 @@
     <ClInclude Include="include\ViewModelBase.h" />
     <ClInclude Include="include\ViewModelFactory.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Stub.h">
-      <DependentUpon>Stub.idl</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -129,11 +126,8 @@
     <ClCompile Include="src\App.cpp" />
     <ClCompile Include="src\Container.cpp" />
     <ClCompile Include="src\Events\EventToken.cpp" />
+    <ClCompile Include="src\Frame.cpp" />
     <ClCompile Include="src\ViewModelBase.cpp" />
-    <ClCompile Include="Stub.cpp">
-      <DependentUpon>Stub.idl</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="FoxTail.def" />
@@ -144,10 +138,8 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="src\Frame.idl" />
     <Midl Include="src\ViewModelBase.idl" />
-    <Midl Include="Stub.idl">
-      <SubType>Designer</SubType>
-    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

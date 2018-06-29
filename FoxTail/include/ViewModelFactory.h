@@ -8,6 +8,8 @@
 #include "Services/UseServices.h"
 
 namespace FoxTail {
+
+	class ViewModelBase;
 	
 	class ViewModelFactory {
 	public:

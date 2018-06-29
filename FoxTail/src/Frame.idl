@@ -1,0 +1,8 @@
+namespace FoxTail
+{
+	[default_interface]
+	runtimeclass Frame : Windows.UI.Xaml.Controls.Frame
+	{
+		Frame();
+	};
+}

@@ -11,3 +11,4 @@
 #include "VectorHelpers.h"
 #include "ViewModelFactory.h"
 #include "PageBase.h"
+#include "Frame.h"
