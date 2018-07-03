@@ -35,17 +35,13 @@ namespace FoxTail::Services {
 
 	namespace detail {
 		template <class S, class T>
-		void SetService(ServiceUser<T> * s) {
-#ifdef PERMISSIVEFIX
-			s->SetService(App::Current()->Container().ResolveService(std::shared_ptr<S>{}));
-#else
-			s->SetService(App::Current()->Container().ResolveService<S>());
-#endif
+		void SetService(ServiceUser<T> & s) {
+			s.SetService(App::Current()->Container().ResolveService<S>());
 		}
 	}
 
 	template <class... T>
-	void FillDependencies(FoxTail::Services::use_services<T...> * s) {
+	void FillDependencies(FoxTail::Services::use_services<T...> & s) {
 		detail::SetService<T...>(s);
 	}
 

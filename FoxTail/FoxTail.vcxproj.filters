@@ -29,29 +29,24 @@
     <ClCompile Include="Generated Files\module.g.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\App.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Container.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Events\EventToken.cpp">
       <Filter>src\Events</Filter>
     </ClCompile>
-    <ClCompile Include="Stub.cpp" />
     <ClCompile Include="src\ViewModelBase.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Frame.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\App.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="include\export.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Stub.h" />
     <ClInclude Include="include\ViewModelBase.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -64,13 +59,7 @@
     <ClInclude Include="include\PageBase.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\FoxTail.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Container.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\App.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Services\UseServices.h">
@@ -91,6 +80,12 @@
     <ClInclude Include="include\Frame.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\App2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\App.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="FoxTail.def" />
@@ -103,6 +98,9 @@
       <Filter>src</Filter>
     </Midl>
     <Midl Include="src\Frame.idl">
+      <Filter>src</Filter>
+    </Midl>
+    <Midl Include="src\App.idl">
       <Filter>src</Filter>
     </Midl>
   </ItemGroup>

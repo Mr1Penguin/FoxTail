@@ -3,14 +3,13 @@
 #include <type_traits>
 #include <memory>
 #include <vector>
-#include "ViewModelBase.h"
 #include "VectorHelpers.h"
 #include "Services/UseServices.h"
 
 namespace FoxTail {
-
-	class ViewModelBase;
 	
+	using ViewModelBase = winrt::FoxTail::ViewModelBase;
+
 	class ViewModelFactory {
 	public:
 		static ViewModelFactory & Instance() {
@@ -18,39 +17,39 @@ namespace FoxTail {
 			return instance;
 		}
 
-		template<class TViewModel, class... TArgs>
-		void RegisterApplicationViewModel(TArgs... args) {
-			static_assert(std::is_base_of_v<ViewModelBase, TViewModel>, "TViewModel is not inherited from ViewModelBase");
+		template<class TViewModel>
+		void RegisterApplicationViewModel() {
+			//static_assert(std::is_base_of_v<winrt::impl::base_one<TViewModel, ViewModelBase>, TViewModel>, "TViewModel is not inherited from ViewModelBase");
 			static_assert(!std::is_same_v<ViewModelBase, TViewModel>);
 			replace_or_push_back(m_application_view_models, 
-				[](std::shared_ptr<ViewModelBase> & vmb)
+				[](auto & vmb)
 			{
-				return dynamic_cast<TViewModel*>(vmb.get()) != nullptr;
+				return vmb.try_as<TViewModel>() != nullptr;
 			},
 				[&]() 
 			{
-				auto vm = std::make_shared<TViewModel>(args...);
-				Services::FillDependencies(vm.get());
+				TViewModel vm;
+				//Services::FillDependencies(vm);
 				return std::move(vm);
 			});
 		}
 
 		template<class TViewModel>
-		std::shared_ptr<TViewModel> GetViewModel() {
-			static_assert(std::is_base_of_v<ViewModelBase, TViewModel>, "TViewModel is not inherited from ViewModelBase");
+		winrt::com_ptr<TViewModel> GetViewModel() {
+			static_assert(std::is_base_of_v<winrt::impl::base_one<TViewModel,ViewModelBase>, TViewModel>, "TViewModel is not inherited from ViewModelBase");
 			static_assert(!std::is_same_v<ViewModelBase, TViewModel>);
-			auto it = nano::find_if(m_application_view_models,
-				[](std::shared_ptr<ViewModelBase> & vmb)
+			auto it = std::find_if(std::begin(m_application_view_models), std::end(m_application_view_models),
+				[](auto & vmb)
 			{
-				return dynamic_cast<TViewModel*>(vmb.get()) != nullptr;
+				return vmb.try_as<TViewModel>() != nullptr;
 			});
-			if (it == nano::end(m_application_view_models)) {
-				auto tvm = std::make_shared<TViewModel>();
-				Services::FillDependencies(tvm.get());
-				return std::move(tvm);
+			if (it == std::end(m_application_view_models)) {
+				auto vm = winrt::make_self<TViewModel>();
+				//Services::FillDependencies(*vm);
+				return std::move(vm);
 			}
-
-			return *it;
+			return nullptr;
+			//return it->try_as<TViewModel>();
 		}
 	private:
 		ViewModelFactory()
@@ -60,6 +59,6 @@ namespace FoxTail {
 		ViewModelFactory(const ViewModelFactory &) = delete;
 		void operator=(const ViewModelFactory &) = delete;
 
-		std::vector<std::shared_ptr<ViewModelBase>> m_application_view_models;
+		std::vector<ViewModelBase> m_application_view_models;
 	};
 }

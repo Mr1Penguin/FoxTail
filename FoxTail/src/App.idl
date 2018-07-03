@@ -1,0 +1,10 @@
+namespace FoxTail
+{
+	unsealed runtimeclass App : Windows.UI.Xaml.Application
+	{
+		App();
+		protected void BeforeInit();
+		protected void AfterInit();
+		protected Windows.UI.Xaml.Interop.TypeName ShellPage();
+	}
+}

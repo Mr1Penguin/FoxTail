@@ -9,6 +9,9 @@
 
 #include "winrt/Windows.Foundation.h"
 #include "winrt/Windows.UI.Xaml.Data.h"
+#include "winrt/Windows.UI.Xaml.Interop.h"
+#include "winrt/Windows.UI.Xaml.Navigation.h"
+#include "winrt/Windows.ApplicationModel.Activation.h"
 
 #include <nanorange.hpp>
 #include <unordered_map>

@@ -1,6 +1,6 @@
 namespace FoxTail
 {
-	runtimeclass ViewModelBase : Windows.UI.Xaml.Data.INotifyPropertyChanged
+	unsealed runtimeclass ViewModelBase : Windows.UI.Xaml.DependencyObject, Windows.UI.Xaml.Data.INotifyPropertyChanged
 	{
 		ViewModelBase();
 	}

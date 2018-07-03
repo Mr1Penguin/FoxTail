@@ -24,13 +24,6 @@ namespace FoxTail {
 			FillDependencies(service.get());
 		}
 
-#ifdef PERMISSIVEFIX
-		template <class TI>
-		std::shared_ptr<TI> ResolveService(std::shared_ptr<TI>) const {
-			return ResolveService<TI>();
-		}
-#endif
-
 		template <class TI>
 		std::shared_ptr<TI> ResolveService() const {
 			static_assert(std::is_base_of_v<Services::ServiceInterface, TI>);

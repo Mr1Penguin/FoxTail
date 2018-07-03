@@ -1,22 +1,22 @@
 #pragma once
-#include "Container.h"
-#include "Events/EventBus.h"
+#include "App.g.h"
 
-namespace FoxTail {
-	class App {
+namespace winrt::FoxTail::implementation {
+	struct App : AppT<App> {
 	public:
-		FOXEXPORT App();
-		FoxTail::Container & Container() { return m_container; }
-		FoxTail::Events::EventBus & EventBus() { return m_event_bus; }
-		static FoxTail::App * Current() { return m_current; }
-	protected:
-		FoxTail::Container m_container;
-		FoxTail::Events::EventBus m_event_bus;
-
-		virtual void BeforeInit() {}
-		virtual void AfterInit() {}
-		virtual void Init();
+		App();
+		void BeforeInit() {}
+		void AfterInit() {}
+		void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
+		void OnNavigationFailed(IInspectable const&, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs const&);
+		Windows::UI::Xaml::Interop::TypeName ShellPage();
 	private:
-		FOXEXPORT inline static App * m_current = nullptr;
+	};
+}
+
+namespace winrt::FoxTail::factory_implementation {
+	struct App : AppT<App, implementation::App>
+	{
+
 	};
 }

@@ -2,11 +2,13 @@
 
 #include <cstdint>
 #include <functional>
-#include "export.h"
 
 namespace FoxTail::Events {
 	struct EventToken {
 		__int64 value;
+		bool operator==(const EventToken & other) const {
+			return value == other.value;
+		}
 	};
 
 	struct EventTokenHash {
@@ -14,6 +16,4 @@ namespace FoxTail::Events {
 			return std::hash<int64_t>{}(token.value);
 		}
 	};
-
-	FOXEXPORT bool operator==(const EventToken & left, const EventToken & right);
 }
