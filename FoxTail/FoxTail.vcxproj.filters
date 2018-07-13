@@ -41,7 +41,7 @@
     <ClCompile Include="src\Frame.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\App.cpp">
+    <ClCompile Include="src\FoxApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="include\App2.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\App.h">
+    <ClInclude Include="include\FoxApp.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -100,7 +100,7 @@
     <Midl Include="src\Frame.idl">
       <Filter>src</Filter>
     </Midl>
-    <Midl Include="src\App.idl">
+    <Midl Include="src\FoxApp.idl">
       <Filter>src</Filter>
     </Midl>
   </ItemGroup>

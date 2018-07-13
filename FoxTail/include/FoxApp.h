@@ -1,22 +1,25 @@
 #pragma once
-#include "App.g.h"
+#include "FoxApp.g.h"
 
 namespace winrt::FoxTail::implementation {
-	struct App : AppT<App> {
+	struct FoxApp : FoxAppT<FoxApp> {
 	public:
-		App();
+		FoxApp();
 		void BeforeInit() {}
 		void AfterInit() {}
 		void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
 		void OnNavigationFailed(IInspectable const&, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs const&);
-		Windows::UI::Xaml::Interop::TypeName ShellPage();
+		int32_t Life() { return 42; }
+		virtual Windows::UI::Xaml::Interop::TypeName ShellPage();
 	private:
 	};
 }
 
 namespace winrt::FoxTail::factory_implementation {
-	struct App : AppT<App, implementation::App>
+	struct FoxApp : FoxAppT<FoxApp, implementation::FoxApp>
 	{
+		//void CreateInstance(Windows::Foundation::IInspectable const& baseInterface, Windows::Foundation::IInspectable& innerInterface){
 
+		//}
 	};
 }

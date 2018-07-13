@@ -1,0 +1,10 @@
+namespace FoxTail
+{
+	unsealed runtimeclass FoxApp : Windows.UI.Xaml.Application
+	{
+		FoxApp();
+		Int32 Life{ get; };
+		overridable Windows.UI.Xaml.Interop.TypeName ShellPage();
+		overridable void OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs e);
+	}
+}

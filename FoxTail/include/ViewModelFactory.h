@@ -35,7 +35,7 @@ namespace FoxTail {
 		}
 
 		template<class TViewModel>
-		winrt::com_ptr<TViewModel> GetViewModel() {
+		TViewModel GetViewModel() {
 			static_assert(std::is_base_of_v<winrt::impl::base_one<TViewModel,ViewModelBase>, TViewModel>, "TViewModel is not inherited from ViewModelBase");
 			static_assert(!std::is_same_v<ViewModelBase, TViewModel>);
 			auto it = std::find_if(std::begin(m_application_view_models), std::end(m_application_view_models),
@@ -44,7 +44,8 @@ namespace FoxTail {
 				return vmb.try_as<TViewModel>() != nullptr;
 			});
 			if (it == std::end(m_application_view_models)) {
-				auto vm = winrt::make_self<TViewModel>();
+				//auto vm = winrt::make_self<TViewModel>();
+				TViewModel vm;
 				//Services::FillDependencies(*vm);
 				return std::move(vm);
 			}

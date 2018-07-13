@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "App.h"
+#include "FoxApp.h"
 
 using namespace winrt;
 using namespace Windows::ApplicationModel;
@@ -11,11 +11,12 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
 
-App::App()
+FoxApp::FoxApp()
 {
+	OutputDebugString(L"Hi!");
 }
 
-void App::OnLaunched(LaunchActivatedEventArgs const& e)
+void FoxApp::OnLaunched(LaunchActivatedEventArgs const& e)
 {
 	Frame rootFrame{ nullptr };
 	auto content = Window::Current().Content();
@@ -32,7 +33,7 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 		// a SuspensionManager key
 		rootFrame = FoxTail::Frame();
 
-		rootFrame.NavigationFailed({ this, &App::OnNavigationFailed });
+		rootFrame.NavigationFailed({ this, &FoxApp::OnNavigationFailed });
 
 		if (e.PreviousExecutionState() == ApplicationExecutionState::Terminated)
 		{
@@ -47,7 +48,12 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter
-				rootFrame.Navigate(ShellPage(), box_value(e.Arguments()));
+				
+				//winrt::agile_ref tt{ *this };
+				auto ts = this->get_strong().try_as<IFoxAppOverrides>();
+				auto ta = this->try_as<IFoxAppOverrides>();
+				auto page = ts.ShellPage();
+				rootFrame.Navigate(page, box_value(e.Arguments()));
 			}
 			// Place the frame in the current Window
 			Window::Current().Content(rootFrame);
@@ -64,7 +70,7 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter
-				rootFrame.Navigate(ShellPage(), box_value(e.Arguments()));
+				rootFrame.Navigate(this->ShellPage(), box_value(e.Arguments()));
 			}
 			// Ensure the current window is active
 			Window::Current().Activate();
@@ -77,12 +83,12 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 /// </summary>
 /// <param name="sender">The Frame which failed navigation</param>
 /// <param name="e">Details about the navigation failure</param>
-void App::OnNavigationFailed(IInspectable const&, NavigationFailedEventArgs const& e)
+void FoxApp::OnNavigationFailed(IInspectable const&, NavigationFailedEventArgs const& e)
 {
 	throw hresult_error(E_FAIL, hstring(L"Failed to load Page ") + e.SourcePageType().Name);
 }
 
-Windows::UI::Xaml::Interop::TypeName App::ShellPage() 
+Windows::UI::Xaml::Interop::TypeName FoxApp::ShellPage()
 {
 	throw hresult_error(E_FAIL, hstring(L"ShellPage factory method is not overridden"));
 }

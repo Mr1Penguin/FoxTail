@@ -10,12 +10,12 @@ namespace FoxTail {
 			m_view_model = ViewModelFactory::Instance().GetViewModel<TViewModel>();
 		}
 
-		TViewModel & ViewModel() {
-			return *m_view_model;
+		TViewModel && ViewModel() {
+			return std::move(m_view_model);
 		}
 
 		virtual ~PageBase() {}
 	protected:
-		winrt::com_ptr<TViewModel> m_view_model{ nullptr };
+		TViewModel m_view_model{ nullptr };
 	};
 }
