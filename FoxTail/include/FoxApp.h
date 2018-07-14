@@ -9,9 +9,10 @@ namespace winrt::FoxTail::implementation {
 		void AfterInit() {}
 		void OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&);
 		void OnNavigationFailed(IInspectable const&, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs const&);
-		int32_t Life() { return 42; }
-		virtual Windows::UI::Xaml::Interop::TypeName ShellPage();
+		int32_t Life() { return life; }
+		Windows::UI::Xaml::Interop::TypeName ShellPage();
 	private:
+		int32_t life;
 	};
 }
 

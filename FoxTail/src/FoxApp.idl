@@ -5,6 +5,6 @@ namespace FoxTail
 		FoxApp();
 		Int32 Life{ get; };
 		overridable Windows.UI.Xaml.Interop.TypeName ShellPage();
-		overridable void OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs e);
+		//overridable void OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs e);
 	}
 }

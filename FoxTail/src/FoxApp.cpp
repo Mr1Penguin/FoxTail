@@ -14,6 +14,7 @@ using namespace Windows::UI::Xaml::Navigation;
 FoxApp::FoxApp()
 {
 	OutputDebugString(L"Hi!");
+	life = 50;
 }
 
 void FoxApp::OnLaunched(LaunchActivatedEventArgs const& e)
