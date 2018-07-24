@@ -51,9 +51,10 @@ void FoxApp::OnLaunched(LaunchActivatedEventArgs const& e)
 				// parameter
 				
 				//winrt::agile_ref tt{ *this };
-				auto ts = this->get_strong().try_as<IFoxAppOverrides>();
+				/*auto ts = this->get_strong().try_as<IFoxAppOverrides>();
 				auto ta = this->try_as<IFoxAppOverrides>();
-				auto page = ts.ShellPage();
+				auto page = ts.ShellPage();*/
+				auto page = this->ShellPage();
 				rootFrame.Navigate(page, box_value(e.Arguments()));
 			}
 			// Place the frame in the current Window
